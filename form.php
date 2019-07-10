@@ -26,3 +26,4 @@ pr($arr);
 
 pr(multiArr2oneArr($arr));
 pr($string = arrToStr($arr));
+echo 1;
