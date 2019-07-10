@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>layout 后台大布局 - Layui</title>
+  <link rel="stylesheet" type="text/css" href="layui/css/layui.css">
+  <link rel="stylesheet" type="text/css" href="css/kindeditor.css">
+  <script src="js/jquery.min.js"></script>
+  <script src="layui/layui.js"></script>
+  <script src="./js/kindeditor-all.js"></script>
+  <script>
+    var editor;
+  KindEditor.ready(function(K) {
+
+        var editor = K.create('textarea[name="pay_img"]', {
+      items:['image'],
+      allowFileManager : true,
+      loadStyleMode : false,
+      uploadJson: '/kindeditor/asp.net/upload_json.ashx',
+      fileManagerJson: '/kindeditor/asp.net/file_manager_json.ashx',
+
+            //设置编辑器创建后执行的回调函数
+            afterCreate: function () {
+                $(".send_").click(function () {
+                    var conCon = $(".ke-content").html();
+                    if (editor.isEmpty()) {
+                        alert("付款截图不能空"); return false;
+                    }
+                })
+            },
+           
+        });
+      
+  });
+</script>
+  <style>
+  </style>
+</head>
+
+
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <div class="layui-logo">layui 后台布局</div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+    <ul class="layui-nav layui-layout-left">
+      <li class="layui-nav-item"><a href="">控制台</a></li>
+      <li class="layui-nav-item"><a href="">商品管理</a></li>
+      <li class="layui-nav-item"><a href="">用户</a>
+        <dl class="layui-nav-child">
+          <dd><a href="">邮件管理</a></dd>
+          <dd><a href="">消息管理</a></dd>
+          <dd><a href="">授权管理</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item">
+        <a href="javascript:;">其它系统</a>
+      </li>
+    </ul>
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <a href="javascript:;">
+          <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+          hehe
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a href="">基本资料</a></dd>
+          <dd><a href="">安全设置</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"><a href="">退了</a></li>
+    </ul>
+  </div>
+  
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+        <li class="layui-nav-item layui-nav-itemed">
+          <a class="" href="javascript:;">所有商品</a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;">列表一</a></dd>
+            <dd><a href="javascript:;">列表二</a></dd>
+            <dd><a href="javascript:;">列表三</a></dd>
+            <dd><a href="">超链接</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">解决方案</a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;">列表一</a></dd>
+            <dd><a href="javascript:;">列表二</a></dd>
+            <dd><a href="">超链接</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">云市场</a></li>
+        <li class="layui-nav-item"><a href="">发布商品</a></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="layui-body">
+    <!-- 内容主体区域 -->
+
+<div class="layui-fluid">
+
+<div class="layui-tab layui-tab-card">
+  <ul class="layui-tab-title">
+    <li class="layui-this">网站设置</li>
+    <li>用户管理</li>
+    <li>权限分配</li>
+    <li>商品管理</li>
+    <li>订单管理</li>
+    <li>消息管理</li>
+  </ul>
+  <div class="layui-tab-content">
+    <div class="layui-tab-item layui-show">
+      <form class="layui-form" action="">
+  <div class="layui-form-item">
+    <label class="layui-form-label">输入框</label>
+    <div class="layui-input-block">
+      <input type="text" name="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">密码框</label>
+    <div class="layui-input-inline">
+      <input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+    </div>
+    <div class="layui-form-mid layui-word-aux">辅助文字</div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">选择框</label>
+    <div class="layui-input-block">
+      <select name="city" lay-verify="required">
+        <option value=""></option>
+        <option value="0">北京</option>
+        <option value="1">上海</option>
+        <option value="2">广州</option>
+        <option value="3">深圳</option>
+        <option value="4">杭州</option>
+      </select>
+      
+      <select name="city" lay-verify="" lay-search>
+        <option value="010">layer</option>
+        <option value="021">form</option>
+        <option value="0571" selected>layim</option>
+      </select>   
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">复选框</label>
+    <div class="layui-input-block">
+      <input type="checkbox" name="" title="写作">
+      <input type="checkbox" name="" title="阅读" checked>
+      <input type="checkbox" name="" title="发呆">
+
+      <input type="checkbox" name="" title="写作" lay-skin="primary" checked>
+<input type="checkbox" name="" title="发呆" lay-skin="primary"> 
+<input type="checkbox" name="" title="禁用" lay-skin="primary" disabled> 
+    </div>
+  </div>
+
+  <div class="layui-inline">
+    <label class="layui-form-label">密码</label>
+    <div class="layui-input-inline" style="width: 100px;">
+      <input type="password" name="" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-inline">
+    <label class="layui-form-label">再次输入密码</label>
+    <div class="layui-input-inline" style="width: 100px;">
+      <input type="password" name="" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">开关</label>
+    <div class="layui-input-block">
+      <input type="checkbox" name="switch" lay-skin="switch">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">单选框</label>
+    <div class="layui-input-block">
+      <input type="radio" name="sex" value="男" title="男">
+      <input type="radio" name="sex" value="女" title="女" checked>
+    </div>
+  </div>
+  <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">文本域</label>
+    <div class="layui-input-block">
+      <textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+  </div>
+</form>
+
+    </div>
+    <div class="layui-tab-item">
+        <div class="layui-inline">
+          <div class="layui-row">
+            
+            <label class="layui-form-label">范围</label>
+            <div class="layui-input-inline" style="width: 100px;">
+              <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid">-</div>
+            <div class="layui-input-inline" style="width: 100px;">
+              <input type="text" name="price_max" placeholder="￥" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+      </div>
+      <dvi class="layui-form">
+        ddd
+      </dvi>
+
+      <div class="layui-progress">
+        <div class="layui-progress-bar" lay-percent="10%"></div>
+        <div class="layui-progress" lay-showPercent="true">
+          <div class="layui-progress-bar layui-bg-red" lay-percent="1/3"></div>
+        </div>
+               
+        <div class="layui-progress" lay-showPercent="yes">
+          <div class="layui-progress-bar layui-bg-red" lay-percent="30%"></div>
+        </div>
+         
+        <div class="layui-progress layui-progress-big" lay-showPercent="yes">
+          <div class="layui-progress-bar layui-bg-green" lay-percent="50%"></div>
+        </div>
+        <br>
+        <div class="layui-progress layui-progress-big">
+  <div class="layui-progress-bar" lay-percent="20%"></div>
+</div>
+ 
+<div class="layui-progress layui-progress-big">
+  <div class="layui-progress-bar layui-bg-orange" lay-percent="50%"></div>
+</div>
+ 
+<div class="layui-progress layui-progress-big" lay-showPercent="true">
+  <div class="layui-progress-bar layui-bg-blue" lay-percent="80%"></div>
+</div>
+
+<div class="layui-card">
+  <div class="layui-card-header">卡片面板</div>
+  <div class="layui-card-body">
+    卡片式面板面板通常用于非白色背景色的主体内<br>
+    从而映衬出边框投影
+  </div>
+</div><div class="layui-collapse">
+  <div class="layui-colla-item">
+    <h2 class="layui-colla-title">杜甫</h2>
+    <div class="layui-colla-content layui-show">内容区域</div>
+  </div>
+  <div class="layui-colla-item">
+    <h2 class="layui-colla-title">李清照</h2>
+    <div class="layui-colla-content layui-show">内容区域</div>
+  </div>
+  <div class="layui-colla-item">
+    <h2 class="layui-colla-title">鲁迅</h2>
+    <div class="layui-colla-content layui-show">内容区域</div>
+  </div>
+</div>
+      
+      </div>
+    </div>
+    <div class="layui-tab-item">
+
+      <button class="layui-btn">查看消息<span class="layui-badge layui-bg-gray">1</span></button>
+<button class="layui-btn">动态<span class="layui-badge-dot layui-bg-orange"></span></button>
+        <table class="layui-table">
+  <colgroup>
+    <col width="150">
+    <col width="200">
+    <col>
+  </colgroup>
+  <thead>
+    <tr>
+      <th>昵称</th>
+      <th>加入时间</th>
+      <th>签名</th>
+    </tr> 
+  </thead>
+  <tbody>
+    <tr>
+      <td>贤心</td>
+      <td>2016-11-29</td>
+      <td>人生就像是一场修行</td>
+    </tr>
+    <tr>
+      <td>许闲心</td>
+      <td>2016-11-28</td>
+      <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
+    </tr>
+  </tbody>
+</table>
+      小圆点，通过 layui-badge-dot 来定义，里面不能加文字
+<span class="layui-badge-dot"></span>
+<span class="layui-badge-dot layui-bg-orange"></span>
+<span class="layui-badge-dot layui-bg-green"></span>
+<span class="layui-badge-dot layui-bg-cyan"></span>
+<span class="layui-badge-dot layui-bg-blue"></span>
+<span class="layui-badge-dot layui-bg-black"></span>
+<span class="layui-badge-dot layui-bg-gray"></span>
+ 
+椭圆体，通过 layui-badge 来定义。事实上我们把这个视作为主要使用方式
+<span class="layui-badge">6</span>
+<span class="layui-badge">99</span>
+<span class="layui-badge">61728</span>
+ 
+<span class="layui-badge">赤</span>
+<span class="layui-badge layui-bg-orange">橙</span>
+<span class="layui-badge layui-bg-green">绿</span>
+<span class="layui-badge layui-bg-cyan">青</span>
+<span class="layui-badge layui-bg-blue">蓝</span>
+<span class="layui-badge layui-bg-black">黑</span>
+<span class="layui-badge layui-bg-gray">灰</span>
+ 
+边框体，通过 layui-badge-rim 来定义
+<span class="layui-badge-rim">6</span>
+<span class="layui-badge-rim">Hot</span>
+    </div>
+
+
+    <div class="layui-tab-item">
+
+      <blockquote class="layui-elem-quote">引用区域的文字</blockquote>
+<blockquote class="layui-elem-quote layui-quote-nm">引用区域的文字</blockquote>
+
+默认分割线
+<hr>
+ 
+赤色分割线
+<hr class="layui-bg-red" style="">
+ 
+橙色分割线
+<hr class="layui-bg-orange">
+ 
+墨绿分割线
+<hr class="layui-bg-green">
+ 
+青色分割线
+<hr class="layui-bg-cyan">
+ 
+蓝色分割线
+<hr class="layui-bg-blue">
+ 
+黑色分割线
+<hr class="layui-bg-black">
+ 
+灰色分割线
+<hr class="layui-bg-gray">
+      <ul class="layui-timeline">
+  <li class="layui-timeline-item">
+    <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+    <div class="layui-timeline-content layui-text">
+      <h3 class="layui-timeline-title">8月18日</h3>
+      <p>
+        layui 2.0 的一切准备工作似乎都已到位。发布之弦，一触即发。
+        <br>不枉近百个日日夜夜与之为伴。因小而大，因弱而强。
+        <br>无论它能走多远，抑或如何支撑？至少我曾倾注全心，无怨无悔 <i class="layui-icon"></i>
+      </p>
+    </div>
+  </li>
+  <li class="layui-timeline-item">
+    <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+    <div class="layui-timeline-content layui-text">
+      <h3 class="layui-timeline-title">8月16日</h3>
+      <p>杜甫的思想核心是儒家的仁政思想，他有“<em>致君尧舜上，再使风俗淳</em>”的宏伟抱负。个人最爱的名篇有：</p>
+      <ul>
+        <li>《登高》</li>
+        <li>《茅屋为秋风所破歌》</li>
+      </ul>
+    </div>
+  </li>
+  <li class="layui-timeline-item">
+    <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+    <div class="layui-timeline-content layui-text">
+      <h3 class="layui-timeline-title">8月15日</h3>
+      <p id="id">
+        中国人民抗日战争胜利72周年
+        <br>常常在想，尽管对这个国家有这样那样的抱怨，但我们的确生在了最好的时代
+        <br>铭记、感恩
+        <br>所有为中华民族浴血奋战的英雄将士
+        <br>永垂不朽
+      </p>
+    </div>
+  </li>
+  <li class="layui-timeline-item">
+    <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+    <div class="layui-timeline-content layui-text">
+      <div class="layui-timeline-title">过去</div>
+    </div>
+  </li>
+</ul>
+
+    </div>
+    <div class="layui-tab-item">
+
+    <p>弹出层</p>
+      <button id="message" class="layui-form"> 弹出消息</button>
+      <button id="confirm" class="layui-form"> 弹出确认框</button>
+      <button id="dialogue-box" class="layui-form"> 弹出对话框</button>
+      <button id="input" class="layui-form"> 弹出输入框</button>
+
+
+    </div>
+    <div class="layui-tab-item">
+      <select name="city" lay-verify="">
+        <option value="">请选择一个城市</option>
+        <option value="010">北京</option>
+        <option value="021">上海</option>
+        <option value="0571">杭州</option>
+      </select>     
+
+
+
+<form class="layui-form" action="">
+   <div class="layui-inline">
+      <label class="layui-form-label">搜索选择框</label>
+      <div class="layui-input-inline">
+        <select name="modules" lay-verify="required" lay-search="">
+          <option value="">直接选择或搜索选择</option>
+          <option value="1">layer</option>
+        </select>
+      </div>
+    </div>
+</form>
+  
+<form action="" method="post">
+  <div class="layui-form">
+    <select name="abc" id="" lay-search="">      
+    <option></Doption>
+    <option>abc</Doption>
+    <option>a1bc</option>
+    <option>ab2c</option>
+    <option>ab3c</option>
+    <option>ab4c</option>
+    <option>ab5c</option>
+    <option>ab6c</option>
+    </select>
+  </div>
+</form>
+<div class="layui-main">layui-main</div>
+<div class="layui-inline">layui-inline  </div>
+<div class="layui-box">layui-box</div>
+<div class="layui-btn-container">layui-btn-container </div>
+<div class="layui-btn-fluid">layui-btn-fluid </div>
+
+<div class="layui-bg-red">layui-bg-red </div>
+<div class="layui-bg-orange">layui-bg-orange </div>
+<div class="layui-bg-cyan">layui-bg-cyan </div>
+<div class="layui-bg-green">layui-bg-green </div>
+<div class="layui-bg-gray">layui-bg-gray </div>
+<div class="layui-bg-blue">layui-bg-blue </div>
+<div class="layui-bg-black">layui-bg-black </div>
+
+<div class="layui-tab ">
+  <ul class="layui-tab-title ">
+    <li class="layui-this">标题一</li>
+    <li>标题二</li>
+    <li>标题三</li>
+  </ul>
+  <div class="layui-tab-content">
+    <div class="layui-tab-item layui-show">
+      <button class="layui-btn" lay-submit lay-filter="login">登入</button>      
+    <div id="daojishi"></div>
+    </div>
+    <div class="layui-tab-item">内容2
+
+  <textarea class="span10" type="text" id="pay_img" name="pay_img">2</textarea>
+
+  <input type="button" checked="send_" value="提交">
+    </div>
+    <div class="layui-tab-item">内容3</div>
+  </div>
+</div>
+
+
+
+
+
+
+
+      </div>
+
+    </div>
+    <div class="layui-tab-item">内容6</div>
+    <div class="layui-tab-item">内容6</div>
+    <div class="layui-tab-item">内容6</div>
+    <div class="layui-tab-item">内容6</div>
+    <div class="layui-tab-item">内容6</div>
+  </div>
+</div>
+</div>
+ 
+
+  
+</div>
+
+
+
+<script src="js/abc.js"></script>
+<script>
+layui.use(['form', 'element', 'util'], function(){
+  var form = layui.form,
+   element = layui.element;
+   var util = layui.util;
+   var flow = layui.flow;
+
+  
+  //示例
+  var serverTime = new Date().getTime(); //假设为当前服务器时间，这里采用的是本地时间，实际使用一般是取服务端的
+  var endTime = new Date(2020,1,1).getTime() //假设为结束日期
+   
+  util.countdown(endTime, serverTime, function(date, serverTime, timer){
+    // var str = date[0] + '天' + date[1] + '时' +  date[2] + '分' + date[3] + '秒';
+    layui.$('#daojishi').html(timer + '秒后可用');
+    // console.log(timer)
+  });
+
+})
+
+</script>
+</body>
+</html>

